@@ -36,7 +36,7 @@ The Logistic function to attenuate cases with low number of regions is
 
 $$ \frac{1.0}{1.0 + e^{n0-N}} $$
 
-Without the attenuation, a bias estimate might get too high value. The functions's midpoint value $n0 = 5$ seems to attenuate estimate well enough, at least when solar activity is near its maximum. Days when there are a high number of regions present, they are most likely distributed to the both side of zero degrees. Even though there are days when they aren't and those are the days when center point of radiation deviates from the center significantly. 
+Without the attenuation, a bias estimate might get too high value. The functions's midpoint value $n0 = 5$ seems to attenuate estimate well enough in azimuth direction, at least when solar activity is near its maximum. Days when there are a high number of regions present, they are most likely distributed to the both side of zero degrees. Even though there are days when they aren't and those are the days when center point of radiation deviates from the center significantly.
 
 Extent weighted mean of heliographic latitudes or longitudes can be calculated with the following equation which is the estimate
 
@@ -54,10 +54,12 @@ An estimate value is unitless and between -1 and 1. It might be usefull to scale
 
 ## Analysis and results
 
-Following graph shows how FMI's C-band weather radars' beam pointing bias in azimuth direction. Lower graph shows estimate values how the center point of solar radiation change each day. 
+Following graph shows how FMI's C-band weather radars' beam pointing bias change in azimuth direction. Lower graph shows estimate values how the center point of solar radiation change each day. 
 ![Azimuth bias of radar pointig and azimuth bias estimate of solar radiation](./doc/images/solar_az_bias_estimate_2023-10-01_2023-12-31_800x600px.png)
 
-It is clearly visible that there is a correlation in azimuth direction. Analyzing elevation variation there aren't so good connection when solar cycle is near its maximum and regions are close to the equator. Running the analysis on daily basis at FMI, it has shown that azimuth bias estimate variation values 0.05 or greater have good indication that the solar radiation of regions have effected to the azimuth biases of beam pointing. That is true especially when the effect is visible on multiple radars. 
+It is clearly visible that there is a correlation in azimuth direction. Analyzing elevation variation there aren't so good connection when solar cycle is near its maximum and regions are close to the equator. Using sunspot characteristics might be a way to increase the weight of high active reagions over others. For that, deeper knowledge of [sunspot analysis techniques](https://www.ngdc.noaa.gov/stp/space-weather/solar-data/solar-features/sunspot-regions/usaf_mwl/documentation/usaf_sunspot-analysis-techniques_afwaman15-1.pdf) and understanding which kind of reagions have higher propability to produce radiation on weather radar bands might be a good starting point.
+
+Running the analysis on daily basis at FMI, it has shown that azimuth bias estimate variation values 0.05 or greater have good indication that the solar radiation of regions have effected to the azimuth biases of beam pointing. That is true especially when the effect is visible on multiple radars.
 
  It is important to notice that all FMI's radars use pencil beam slightly under 1 degrees. Assuming a beam half power width is much wider or narrower, the correlation might not be so good. A wider beam detects solar radiation much smoother and on the other hand, a narrower beam sees more details.
  

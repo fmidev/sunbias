@@ -30,7 +30,7 @@ Bias calculation is quite traightforward.
 4. Use [Logistic function](https://en.wikipedia.org/wiki/Logistic_function) with 5 as function's midpoint to attenuate cases with low number of regions.
 5. Change sign of result if needed
 
-The sign change is usefull because the elevation and azimuth angles of interference are usually substracted from radar's pointing, radar's rotation direction varies, radar may locate either northern or southern hemisphere, and bacause the definiton of [Stonyhurst heliographic coordinate system](https://en.wikipedia.org/wiki/Solar_coordinate_systems#Heliographic). Directions and signs of heliographic coordinates are described in the [Coordinate systems for solar image data](https://fits.gsfc.nasa.gov/wcs/coordinates.pdf) article.
+The sign change is usefull because the elevation and azimuth angles of interference are usually substracted from radar's pointing, radar's rotation direction varies, radar may locate either northern or southern hemisphere, and because the definiton of [Stonyhurst heliographic coordinate system](https://en.wikipedia.org/wiki/Solar_coordinate_systems#Heliographic). Directions and signs of heliographic coordinates are described in the [Coordinate systems for solar image data](https://fits.gsfc.nasa.gov/wcs/coordinates.pdf) article.
 
 The Logistic function to attenuate cases with low number of regions is
 

@@ -23,20 +23,20 @@ Bias calculation is quite traightforward.
 1. Select regions that fullfill the following rules:
    * regions have a same date
    * there are more than 1 sunspots in the area
-   * area is grater than 1 millionth of the solar hemisphere
+   * area is greater than 1 millionth of the solar hemisphere
    * heliographic latitude and longitude of a region are between -90 and 90 degrees.
 2. Convert longitudes and latitudes to radians and normalize with sine function.
 3. Calculate an extent weighted mean of normalized latitudes and longitudes separately
 4. Use [Logistic function](https://en.wikipedia.org/wiki/Logistic_function) with 5 as function's midpoint to attenuate cases with low number of regions.
 5. Change sign of result if needed
 
-The sign change is usefull because the elevation and azimuth angles of interference are usually substracted from radars pointing and because the definiton of [Stonyhurst heliographic coordinate system](https://en.wikipedia.org/wiki/Solar_coordinate_systems#Heliographic). Directions and signs of heliographic coordinates are described in the [Coordinate systems for solar image data](https://fits.gsfc.nasa.gov/wcs/coordinates.pdf) article.
+The sign change is usefull because the elevation and azimuth angles of interference are usually substracted from radar's pointing, radar's rotation direction varies, radar may locate either northern or southern hemisphere, and bacause the definiton of [Stonyhurst heliographic coordinate system](https://en.wikipedia.org/wiki/Solar_coordinate_systems#Heliographic). Directions and signs of heliographic coordinates are described in the [Coordinate systems for solar image data](https://fits.gsfc.nasa.gov/wcs/coordinates.pdf) article.
 
 The Logistic function to attenuate cases with low number of regions is
 
 $$ \frac{1.0}{1.0 + e^{n0-N}} $$
 
-Without the attenuation, a bias estimate might get too high value. The functions's midpoint value $n0 = 5$ seems to attenuate an estimate well enough in azimuth direction, at least when solar activity is near its maximum. Days when there are a high number of regions present, they are most likely distributed to the both side of zero degrees. Even though there are days when they aren't and those are the days when center point of radiation deviates from the center significantly.
+Without the attenuation, a bias estimate might get too high value. The functions's midpoint value $n0 = 5$ seems to attenuate an estimate well enough in azimuth direction, at least when solar activity is near its maximum. Days when there are a high number of regions present, they are most likely distributed to the both side of zero degrees. There are days when they aren't and those are the days when center point of radiation deviates from the center significantly.
 
 Extent weighted mean of heliographic latitudes or longitudes can be calculated with the following equation which is the estimate
 
@@ -45,7 +45,7 @@ $$ \frac{S C}{W N} \sum_{i=1}^N w_i \sin{x_i} $$
 Parameters in the equation:
 * $x_i$ is a coordinate in radians
 * $N$ is number of solar regions
-* $w_i$ is extent of the major axis of region in heliographic degrees
+* $w_i$ is extent of the major axis of a region in heliographic degrees
 * $W$ is sum of extent values of all regions
 * $C$ is an attenuation factor calculated by using logistic function
 * $S$ is either 1 or -1 that change the sign of result
